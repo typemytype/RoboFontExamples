@@ -1,6 +1,11 @@
 import vanilla
 import mojo
 
+"""
+Example usage of the vanilla objectBrowser.
+"""
+
+
 class ObjectBrowserController():
 
         def __init__(self, inspectObject):
