@@ -48,7 +48,8 @@ class NiceLines(object):
         ## get the stroke color from the defaults
         self.strokeColor = getDefaultColor("glyphViewStrokeColor")
         
-    def myDraw(self, glyph, info):
+    def myDraw(self,info):
+        glyph = info["glyph"]
         ## initiate the pen
         pen = AntialiasCocoaPen(glyph.getParent())
         ## draw the glyph in the pen
