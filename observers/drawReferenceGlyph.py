@@ -27,7 +27,7 @@ class DrawReferenceGlyph(object):
             font("Georgia", 100)
             stroke(None)
             fill(r, g, b, a)
-            text(t, glyph.width + 10, 10)
+            text(t, (glyph.width + 10, 10))
             
             
 DrawReferenceGlyph()

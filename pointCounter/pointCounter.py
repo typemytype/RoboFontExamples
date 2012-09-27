@@ -21,7 +21,7 @@ class PointCount(object):
         fill(1, 0, 0)
         stroke(None)
         fontSize(10/scale)
-        text("points: %s | selected: %s" %(pointCount, selectedCount), glyph.width+10, 10)
+        text("points: %s | selected: %s" %(pointCount, selectedCount), (glyph.width+10, 10))
     
     
 PointCount()
