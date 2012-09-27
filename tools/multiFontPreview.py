@@ -19,7 +19,7 @@ class MultiFontPreview(BaseWindowController):
         super(MultiFontPreview, self).windowCloseCallback(sender)
 
     def glyphChanged(self, info):
-        glyph = info["glyph"]
+        glyph = CurrentGlyph()
         if glyph is None:
             glyphs = []
         else:
