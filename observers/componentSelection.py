@@ -4,13 +4,15 @@ from mojo.events import EditingTool
 from fontTools.misc.arrayTools import sectRect, normRect, pointInRect
 
 # Adds components selection to the editingTool...
-# Selection of components only works when options is down and there is no point selection.
+# Selection of components only works when:
+# - option is down
+# - there is no point selection.
 
 
 class ComponentSelection(object):
 
     def __init__(self):
-        # obsever the mouse up
+        # observe the mouse up
         addObserver(self, "mouseUp", "mouseUp")
 
     def mouseUp(self, info):
@@ -55,7 +57,7 @@ class ComponentSelection(object):
                         else:
                             # othewise set the component as selected
                             component.selected = True
-            # updat the glyph
+            # update the glyph
             glyph.update()
 
 # start the observer
