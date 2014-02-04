@@ -27,19 +27,19 @@ class StrokeObserer(BaseWindowController):
     def __init__(self):
         self.w = FloatingWindow((250, 130), "Stroke It")
         y = 10
-        self.w.colorText = TextBox((10, y, 100, 22), "Stroke Color:")
+        self.w.colorText = TextBox((10, y, 88, 22), "Stroke Color:", alignment="right")
         self.w.color = ColorWell((100, y-5, -10, 30), color=self.defaultColor, callback=self.changedCallback)
         
         y += 30
-        self.w.widthText = TextBox((10, y, 100, 22), "Stoke Width:")
+        self.w.widthText = TextBox((10, y, 88, 22), "Stoke Width:", alignment="right")
         self.w.width = SliderEditIntStepper((100, y, -10, 22), 10, callback=self.changedCallback, minValue=0, maxValue=100)
         
         y += 30
-        self.w.lineCapText = TextBox((10, y, 100, 22), "Line Cap:")
+        self.w.lineCapText = TextBox((10, y, 88, 22), "Line Cap:", alignment="right")
         self.w.lineCap = PopUpButton((100, y, -10, 22), self._lineCapStylesMap.keys(), callback=self.changedCallback)
         
         y += 30
-        self.w.lineJoinText = TextBox((10, y, 100, 22), "Line Join:")
+        self.w.lineJoinText = TextBox((10, y, 88, 22), "Line Join:", alignment="right")
         self.w.lineJoin = PopUpButton((100, y, -10, 22), self._lineJoinStylesMap.keys(), callback=self.changedCallback)
         
         self.setUpBaseWindowBehavior()
