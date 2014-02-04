@@ -75,6 +75,7 @@ class PointDistanceController(object):
                     t = "%i"
                 else:
                     t = "%.2f"
+                # in the next update 1.5.2 this will be a public method
                 view._drawTextAtPoint(t % dist, self.attributes, (x, y), drawBackground=True, backgroundColor=self.backgroundColor, backgroundStrokeColor=self.backgroundStrokeColor)
 
 PointDistanceController()
