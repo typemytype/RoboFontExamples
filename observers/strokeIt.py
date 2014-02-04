@@ -3,6 +3,8 @@ from vanilla import *
 
 from defconAppKit.windows.baseWindow import BaseWindowController
 
+from lib.UI.stepper import SliderEditIntStepper
+
 from mojo.events import addObserver, removeObserver
 from mojo.UI import UpdateCurrentGlyphView, CurrentSpaceCenter
 
@@ -23,14 +25,14 @@ class StrokeObserer(BaseWindowController):
         )
         
     def __init__(self):
-        self.w = FloatingWindow((200, 130), "Stroke It")
+        self.w = FloatingWindow((250, 130), "Stroke It")
         y = 10
         self.w.colorText = TextBox((10, y, 100, 22), "Stroke Color:")
         self.w.color = ColorWell((100, y-5, -10, 30), color=self.defaultColor, callback=self.changedCallback)
         
         y += 30
         self.w.widthText = TextBox((10, y, 100, 22), "Stoke Width:")
-        self.w.width = Slider((100, y, -10, 22), callback=self.changedCallback)
+        self.w.width = SliderEditIntStepper((100, y, -10, 22), 10, callback=self.changedCallback, minValue=0, maxValue=100)
         
         y += 30
         self.w.lineCapText = TextBox((10, y, 100, 22), "Line Cap:")
