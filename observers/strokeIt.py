@@ -1,6 +1,8 @@
 from AppKit import *
 from vanilla import *
 
+from fontTools.pens.cocoaPen import CocoaPen
+
 from defconAppKit.windows.baseWindow import BaseWindowController
 
 from lib.UI.stepper import SliderEditIntStepper
@@ -68,8 +70,12 @@ class StrokeObserer(BaseWindowController):
         width = self.w.width.get()
         lineCap = self._lineCapStylesMap[self.w.lineCap.getTitle()]
         lineJoin = self._lineJoinStylesMap[self.w.lineJoin.getTitle()]
-                
-        path = glyph.getRepresentation("defconAppKit.NSBezierPath")       
+        
+        #path = glyph.naked().getRepresentation("defconAppKit.NSBezierPath")       
+        pen = CocoaPen(glyph.getParent())
+        glyph.draw(pen)
+        path = pen.path
+        
         path.setLineWidth_(width)
         path.setLineCapStyle_(lineCap)
         path.setLineJoinStyle_(lineJoin)
