@@ -10,11 +10,13 @@ class BuildMenu(object):
         # create a new menu
         myMenu = NSMenu.alloc().initWithTitle_(myMenuTitle)
         # create a new item
-        item = myMenu.addItemWithTitle_action_keyEquivalent_("do it", "action:", "")
+        item = myMenu.addItemWithTitle_action_keyEquivalent_("do it", "action:", "m")
         # create a callback
         self.callbackwrapper = VanillaCallbackWrapper(self.doIt)
         # set the callback
         item.setTarget_(self.callbackwrapper)
+        # setting modifiermaks
+        item.setKeyEquivalentModifierMask_(NSControlKeyMask | NSCommandKeyMask)
         
         
         # ask the main menu
