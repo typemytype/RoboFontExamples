@@ -1,4 +1,4 @@
-
+# get the current font
 font = CurrentFont()
 
 g1 = font["A"]
