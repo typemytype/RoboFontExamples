@@ -1,6 +1,8 @@
+from AppKit import NSURL, NSDocumentController
 from vanilla import *
 from defconAppKit.windows.baseWindow import BaseWindowController
 
+from lib.doodleDocument import DoodleDocument
 from mojo.UI import OpenGlyphWindow, OpenSpaceCenter, OpenFontInfoSheet
 
 
@@ -9,6 +11,13 @@ class SimpleFontWindow(BaseWindowController):
     def __init__(self, font):
         
         self._font = font
+        
+        if font.path:
+            document = DoodleDocument.alloc().init()
+            document.setFileURL_(NSURL.fileURLWithPath_(font.path))
+
+            dc = NSDocumentController.sharedDocumentController()
+            dc.addDocument_(document)
         
         self._canUpdateChangeCount = True
         
