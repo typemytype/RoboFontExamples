@@ -15,7 +15,7 @@ class DrawReferenceGlyph(object):
     def drawReferenceGlyph(self, info):
         
         glyph = info["glyph"]
-        
+        scaleValue = info["scale"]
         r = 0
         g = 0
         b = 0
@@ -24,10 +24,14 @@ class DrawReferenceGlyph(object):
         if glyph is not None and glyph.unicode is not None and glyph.unicode < 0xFFFF:
             t = unichr(glyph.unicode)
             
+            save()
+            translate(glyph.width + 10, 10)
+            scale(scaleValue)
             font("Georgia", 20)
             stroke(None)
             fill(r, g, b, a)
-            text(t, (glyph.width + 10, 10))
+            text(t, (0, 0))
+            restore()
             
             
 DrawReferenceGlyph()
