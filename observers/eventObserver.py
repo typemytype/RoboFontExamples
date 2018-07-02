@@ -47,7 +47,7 @@ class Observer(BaseWindowController):
             item = sender[i]
             notification = item.notification
             
-            keys = notification.keys()
+            keys = list(notification.keys())
             keys.sort()
             
             txt = NSMutableAttributedString.alloc().init()
