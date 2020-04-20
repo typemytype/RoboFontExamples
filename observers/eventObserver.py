@@ -46,7 +46,6 @@ class Observer(BaseWindowController):
         for i in sel:
             item = sender[i]
             notification = item.notification
-
             keys = list(notification.keys())
             keys.sort()
 
@@ -73,4 +72,6 @@ class Observer(BaseWindowController):
         self.w.list.append(NotificationItem(notification))
         self.w.list.getNSTableView().scrollRowToVisible_(len(self.w.list)- 1)
 
+
 Observer()
+
