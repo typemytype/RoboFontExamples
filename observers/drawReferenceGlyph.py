@@ -1,38 +1,41 @@
 """
-An example script of adding an observers and do *something*
+An example script using merz and subscriber
 
 It draws a simple unicode reference of an existing installed font.
 """
-
-from mojo.events import addObserver
-from mojo.drawingTools import *
-
-from lib.tools.misc import unicodeToChar
+from mojo.subscriber import Subscriber, registerGlyphEditorSubscriber
 
 
-class DrawReferenceGlyph(object):
+class ReferenceGlyph(Subscriber):
 
-    def __init__(self):
-        addObserver(self, "drawReferenceGlyph", "draw")
+    debug = True
 
-    def drawReferenceGlyph(self, info):
+    def build(self):
+        glyphEditor = self.getGlyphEditor()
+        self.container = glyphEditor.extensionContainer(
+            identifier="com.typemytype.unicodePreview",
+            location="background",
+            clear=True)
+
+        self.unicodeText = self.container.appendTextLineSublayer(
+            fillColor=(0, 0, 0, .5),
+            offset=(10, 0),
+            font="Georgia",
+            pointSize=30,
+            verticalAlignment="top"
+        )
+
+    def glyphEditorDidSetGlyph(self, info):
         glyph = info["glyph"]
-        scaleValue = info["scale"]
-        r = 0
-        g = 0
-        b = 0
-        a = .5
+        text = ""
+        if glyph.unicode:
+            text = chr(glyph.unicode)
+        self.unicodeText.setText(text)
+        self.unicodeText.setPosition((glyph.width, 0))
 
-        if glyph is not None and glyph.unicode is not None:
-            t = unicodeToChar(glyph.unicode)
-            save()
-            translate(glyph.width + 10, 10)
-            scale(scaleValue)
-            font("Georgia", 20)
-            stroke(None)
-            fill(r, g, b, a)
-            text(t, (0, 0))
-            restore()
+    def glyphEditorGlyphDidChangeMetrics(self, info):
+        glyph = info["glyph"]
+        self.unicodeText.setPosition((glyph.width, 0))
 
 
-DrawReferenceGlyph()
+registerGlyphEditorSubscriber(ReferenceGlyph)
